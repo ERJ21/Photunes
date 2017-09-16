@@ -166,7 +166,7 @@
 
   function getYoutbeVideo(query) {
     console.log(123)
-
+    console.log(query);
     var splitQuery = query.split(" ");
     var finalQuery = "";
     for each(var word in splitQuery) {
@@ -174,7 +174,7 @@
         finalQuery+=(" "+word);
     }
     finalQuery+=" music";
-
+    consol.log(finalQuery);
     var data = $.get(
     'https://www.googleapis.com/youtube/v3/search',
     {
