@@ -166,11 +166,20 @@
 
   function getYoutbeVideo(query) {
     console.log(123)
+
+    var splitQuery = query.split(" ");
+    var finalQuery = "";
+    for each(var word in splitQuery) {
+      if(word.length > 2)
+        finalQuery+=(" "+word);
+    }
+    finalQuery+=" music";
+
     var data = $.get(
     'https://www.googleapis.com/youtube/v3/search',
     {
       part:'id',
-      q: query + 'music',
+      q: finalQuery,
       type: 'video',
       maxResults: 5,
       order: 'viewCount',
