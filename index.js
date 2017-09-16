@@ -7,26 +7,23 @@ const bodyParser = require('body-parser');
 const http = require('http');
 const json = require('json')
 const puppeteer = require('puppeteer');
+var validator = require('validator');
 
 const app = express();
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 
-//const router = require('express').Router();
-//const router2 = require('express').Router();
-
 app.get('/', (req, res) => {
 	res.render(__dirname + '/index.html');
 });
 
 app.post('/', (req, res) => {
-	getReccomendedText(req.body.url, res)
-})
-
-//app.use('/', router);
-//app.use('/', router2);
-
+	if(validator.isURL(req.body.url)) {
+		console.log(req.body.url)
+		getReccomendedText(req.body.url, res)
+	}
+});
 
 async function getReccomendedText(url, res) { 
 	puppeteer.launch({headless: true}).then(async browser => {

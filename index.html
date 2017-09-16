@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Your page title here :)</title>
+  <title>Image//Music</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -66,8 +66,12 @@
       <div class="row" style="margin-top: 5%;">
         <h4>Here's what we found</h4>
       </div>
-      <div class="row" id="videorow">
-        <!-- youtube video goes here -->
+      <div class="row" >
+        <div class="twelve columns">
+          <div id="videorow">
+            <!-- youtube video goes here -->
+          </div>
+        </div>
       </div>
       <div class="row" style="margin-top: 5%;">
         <input class="button-primary u-full-width" id="resetButton" type="submit" value="Search again" onclick="reset()">
@@ -119,24 +123,53 @@
   #result {
     display: none;
   }
+
+  #deletethisvid {
+    margin: auto;
+  }
+
+  #deltethisimage {
+    margin: auto;
+  }
+
+  #videorow {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+  }
+
+  #videorow iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
 </style>
 <script type="text/javascript">
   var loading = document.getElementById("loading");
 
   function searchImageUrl() {
     var url = document.getElementById("imageSearch").value;
-    document.getElementById("searchRow").style.display = "none";
-    loading.style.display = "block";
-    
-    var node = document.createElement("IMG");
-    node.src = url
-    node.style["max-width"] = "100%"
-    node.style["max-height"] = "100%"
-    node.id = "deltethisimage"
-    node.style.margin = "auto";
+    if(validURL(url)) {
+      document.getElementById("searchRow").style.display = "none";
+      loading.style.display = "block";
+      
+      var node = document.createElement("IMG");
+      node.src = url
+      node.style["max-width"] = "100%"
+      node.style["max-height"] = "100%"
+      node.id = "deltethisimage"
+      node.style.margin = "auto";
 
-    document.getElementById("image").appendChild(node);
-    postDoc();
+      document.getElementById("image").appendChild(node);
+      postDoc();
+    }
+    else {
+      alert('That URL doesn\'t seem valid');
+    }
   }
   
   function postDoc() {
@@ -171,12 +204,12 @@
 
     var splitQuery = query.split(" ");
     var finalQuery = "";
-    for (var word in splitQuery) {
-      if(word.length > 2)
-        finalQuery+=(" "+word);
+    for(var i=0; i<splitQuery.length; i++) {
+      if(splitQuery[i].length > 2)
+        finalQuery=finalQuery + (" "+splitQuery[i]);
     }
-    finalQuery+=" music";
-    consol.log(finalQuery);
+    finalQuery=finalQuery +  " music";
+    console.log(finalQuery);
     var data = $.get(
     'https://www.googleapis.com/youtube/v3/search',
     {
@@ -203,6 +236,20 @@
     });  
   }
 
+  // lifted from https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url
+  function validURL(str) {
+    var regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+    if(!regex .test(str)) {
+      return false;
+    } else {
+      if(str.includes('/')) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+  }
 </script>
 </html>
 

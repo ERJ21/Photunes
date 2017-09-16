@@ -20,6 +20,7 @@
     "body-parser": "^1.18.1",
     "express": "^4.15.4",
     "json": "^9.0.6",
-    "puppeteer": "^0.10.2"
+    "puppeteer": "^0.10.2",
+    "validator": "^8.2.0"
   }
 }
