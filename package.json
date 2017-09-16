@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/CJEnright/hello-world-2k17#readme",
   "dependencies": {
+    "body-parser": "^1.18.1",
+    "express": "^4.15.4",
     "puppeteer": "^0.10.2"
   }
 }
