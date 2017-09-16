@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Your page title here :)</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row" id="searchRow">
+      <div style="margin-top: 10%;">
+        <div class="nine columns">
+          <input type="text" name="search" class="search" id="imageSearch" placeholder="Enter an image url">
+        </div>
+        <div class="three columns">
+          <input class="button-primary u-full-width" type="submit" value="Search" onclick="searchImageUrl()">
+        </div>
+      </div>
+    </div>
+    <div id="loading">
+      <div class="row">
+        <h3>Searching for music about:</h3>
+      </div>
+      <div class="row">
+        <div class="tweleve rows" id="image">
+          
+        </div>
+      </div>
+      <div class="row">
+        <div class="loader" id="loader"></div>
+      </div>
+      <div class="row" style="margin-top: 10%;">
+        <input class="button-primary u-full-width" type="submit" value="Skip" onclick="showResult()">
+      </div>
+    </div>
+    <div id="result">
+      <div class="row" style="margin-top: 10%;">
+        <h4>Here's what we found</h4>
+      </div>
+      <div class="row">
+        <!-- youtube video goes here -->
+      </div>
+      <div class="row" style="margin-top: 10%;">
+        <input class="button-primary u-full-width" id="resetButton" type="submit" value="Search again" onclick="reset()">
+      </div>
+    </div>
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+<style type="text/css">
+  .search {
+    width:100%;
+    height: 100%;
+  }
+
+  #loading {
+    margin-top: 10%;
+    display: none;
+  }
+
+  .loader {
+    height: 4px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background-color: #ddd;
+  }
+  .loader:before {
+    display: block;
+    position: absolute;
+    content: "";
+    left: -200px;
+    width: 200px;
+    height: 5px;
+    background-color: #33C3F0;
+    animation: loading 2s linear infinite;
+  }
+
+  @keyframes loading {
+      from {left: -200px; width: 30%;}
+      50% {width: 30%;}
+      70% {width: 70%;}
+      80% { left: 50%;}
+      95% {left: 120%;}
+      to {left: 100%;}
+  }
+
+  #result {
+    display: none;
+  }
+</style>
+<script type="text/javascript">
+  var loading = document.getElementById("loading");
+
+  function searchImageUrl() {
+    var url = document.getElementById("imageSearch").value;
+    document.getElementById("searchRow").style.display = "none";
+    loading.style.display = "block";
+    
+    var node = document.createElement("IMG");
+    node.src = url
+    node.style["max-width"] = "100%"
+    node.style["max-height"] = "100%"
+
+    document.getElementById("image").appendChild(node);
+  }
+
+  function showResult() {
+    loading.style.display = "none";
+    var result = document.getElementById("result");
+    result.style.display = "block"
+  }
+
+  function reset() {
+    var result = document.getElementById("result");
+    result.style.display = "block"
+    document.getElementById("searchRow").style.display = "block";
+    document.getElementById("result").style.display = "none";
+  }resetButton
+</script>
+</html>
+
