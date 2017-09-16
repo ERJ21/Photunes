@@ -132,6 +132,7 @@
     node.src = url
     node.style["max-width"] = "100%"
     node.style["max-height"] = "100%"
+    node.id = "deltethisimage"
 
     document.getElementById("image").appendChild(node);
     postDoc();
@@ -159,6 +160,8 @@
     result.style.display = "block"
     document.getElementById("searchRow").style.display = "block";
     document.getElementById("result").style.display = "none";
+    $('#deltethisimage').remove();
+    $('#deletethisvid').remove();
   }
 
   function getYoutbeVideo(query) {
@@ -181,6 +184,7 @@
       node.height="315";
       node.frameborder="0"
       node.allowfullscreen;
+      node.id='deletethisvid'
 
       document.getElementById("videorow").appendChild(node);
       showResult();
