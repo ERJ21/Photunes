@@ -12,9 +12,11 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
 const router = require('express').Router();
+
 router.get('/', (req, res, next) => {
 	res.render(__dirname + '/index.html');
-})
+});
+
 router.get('/keywords', (req, res, next) => {
 	getReccomendedText(req.body.url, res)
 })
@@ -22,7 +24,7 @@ router.get('/keywords', (req, res, next) => {
 app.use('/', router);
 
 async function getReccomendedText(url, res) { 
-	const data = await puppeteer.launch({headless: true}).then(async browser => {
+	puppeteer.launch({headless: true}).then(async browser => {
 	  const page = await browser.newPage();
 	  await page.goto("https://www.google.com/imghp");
 	  await page.keyboard.down('Shift');
@@ -34,17 +36,15 @@ async function getReccomendedText(url, res) {
 		await page.type(url);
 		await page.mouse.click(700, 450);
 
-		var data;
-
 		await page.on('load', async (...args) => {
-			data = await page.evaluate(() => {
+			const data = await page.evaluate(() => {
 	      const tds = Array.from(document.querySelectorAll('._gUb'))
 	      return tds.map(td => td.textContent)
-	    }); 
-	    res.json(data[0]);
+	    });
+	    //res.json(data[0])
+			console.log('Sending req about ' + data[0]);
 			await browser.close();
 		})
-		return data;
 	})
 }
 
