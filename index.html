@@ -29,8 +29,12 @@
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
+    <div class="row" style="margin-top: 5%;">
+      <h2>Image//Music</h2>
+      <hr style="margin-top: 0;">
+    </div>
     <div class="row" id="searchRow">
-      <div style="margin-top: 10%;">
+      <div style="margin-top: 5%;">
         <div class="nine columns">
           <input type="text" name="search" class="search" id="imageSearch" placeholder="Enter an image url">
         </div>
@@ -39,7 +43,7 @@
         </div>
       </div>
     </div>
-    <div id="loading">
+    <div id="loading" >
       <div class="row">
         <h3>Searching for music about:</h3>
       </div>
@@ -51,18 +55,18 @@
       <div class="row">
         <div class="loader" id="loader"></div>
       </div>
-      <div class="row" style="margin-top: 10%;">
-        <input class="button-primary u-full-width" type="submit" value="Skip" onclick="showResult()">
+      <div class="row" style="margin-top: 5%;">
+        <input class="button-primary u-full-width" type="submit" value="Skip (DELETE THIS BUTTON LATER)" onclick="showResult()">
       </div>
     </div>
     <div id="result">
-      <div class="row" style="margin-top: 10%;">
+      <div class="row" style="margin-top: 5%;">
         <h4>Here's what we found</h4>
       </div>
       <div class="row">
         <!-- youtube video goes here -->
       </div>
-      <div class="row" style="margin-top: 10%;">
+      <div class="row" style="margin-top: 5%;">
         <input class="button-primary u-full-width" id="resetButton" type="submit" value="Search again" onclick="reset()">
       </div>
     </div>
@@ -78,7 +82,7 @@
   }
 
   #loading {
-    margin-top: 10%;
+    margin-top: 5%;
     display: none;
   }
 
