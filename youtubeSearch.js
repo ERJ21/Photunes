@@ -18,5 +18,5 @@ function getVideoId(data, x) {//list of videos, index
 }
 
 function getSrcUrl(videoId) {
-  return
+  return "https://www.youtube.com/embed/" + videoId;
 }
