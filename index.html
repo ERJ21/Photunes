@@ -23,6 +23,8 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="favicon.png">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 <body>
 
@@ -132,18 +134,18 @@
     node.style["max-height"] = "100%"
 
     document.getElementById("image").appendChild(node);
+    postDoc();
   }
   
-  function loadDoc() {
-  var url = document.getElementById("imageSearch").value + "/keywords";
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("demo").innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("GET", url, true);
-  xhttp.send();
+  function postDoc() {
+    var imageurl = document.getElementById("imageSearch").value
+    console.log('posting')
+    var posting = $.post('/', {
+      url: imageurl
+    })
+    posting.done(function(data) {
+      getYoutbeVideo(data)
+    });
   }
    
 
@@ -161,6 +163,7 @@
   }
 
   function getYoutbeVideo(query) {
+    console.log(123)
     var data = $.get(
     'https://www.googleapis.com/youtube/v3/search',
     {
@@ -172,16 +175,17 @@
       topicId: '/m/04rlf',
       key: 'AIzaSyCofayi2gIrdRUYDf-vMEtGcbhOGOytw6c'
     });
-    console.log(data);
-    //<iframe width="560" height="315" src="https://www.youtube.com/embed/dLRLYPiaAoA" frameborder="0" allowfullscreen></iframe>
-    var node = document.createElement("IFRAME");
-    node.src = 'https://www.youtube.com/embed/' + data[0].id.videoId + '?rel=0';
-    node.width="560";
-    node.height="315";
-    node.frameborder="0"
-    node.allowfullscreen;
+    data.done(function(data) {
+      var node = document.createElement("IFRAME");
+      node.src = 'https://www.youtube.com/embed/' + data.items[0].id.videoId + '?rel=0';
+      node.width="560";
+      node.height="315";
+      node.frameborder="0"
+      node.allowfullscreen;
 
-    document.getElementById("videorow").appendChild(node);
+      document.getElementById("videorow").appendChild(node);
+      showResult();
+    });  
   }
 
 </script>

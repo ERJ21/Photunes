@@ -4,24 +4,29 @@ const express = require('express');
 const path = require('path');
 // parsing req and res
 const bodyParser = require('body-parser');
-
+const http = require('http');
+const json = require('json')
 const puppeteer = require('puppeteer');
 
 const app = express();
-app.use(bodyParser.json());
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 
-const router = require('express').Router();
+//const router = require('express').Router();
+//const router2 = require('express').Router();
 
-router.get('/', (req, res, next) => {
+app.get('/', (req, res) => {
 	res.render(__dirname + '/index.html');
 });
 
-router.get('/keywords', (req, res, next) => {
+app.post('/', (req, res) => {
 	getReccomendedText(req.body.url, res)
 })
 
-app.use('/', router);
+//app.use('/', router);
+//app.use('/', router2);
+
 
 async function getReccomendedText(url, res) { 
 	puppeteer.launch({headless: true}).then(async browser => {
@@ -41,8 +46,7 @@ async function getReccomendedText(url, res) {
 	      const tds = Array.from(document.querySelectorAll('._gUb'))
 	      return tds.map(td => td.textContent)
 	    });
-	    //res.json(data[0])
-			console.log('Sending req about ' + data[0]);
+	    res.json(data[0])
 			await browser.close();
 		})
 	})
