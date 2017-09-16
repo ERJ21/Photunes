@@ -133,6 +133,7 @@
     node.style["max-width"] = "100%"
     node.style["max-height"] = "100%"
     node.id = "deltethisimage"
+    node.style.margin = "auto";
 
     document.getElementById("image").appendChild(node);
     postDoc();
@@ -165,11 +166,12 @@
   }
 
   function getYoutbeVideo(query) {
-    console.log(123)
+    console.log('wtf we found something? aight')
+    console.log('finna search with ' + query)
 
     var splitQuery = query.split(" ");
     var finalQuery = "";
-    for each(var word in splitQuery) {
+    for (var word in splitQuery) {
       if(word.length > 2)
         finalQuery+=(" "+word);
     }
@@ -191,6 +193,7 @@
       node.src = 'https://www.youtube.com/embed/' + data.items[0].id.videoId + '?rel=0';
       node.width="560";
       node.height="315";
+      node.style.margin = "auto";
       node.frameborder="0"
       node.allowfullscreen;
       node.id='deletethisvid'
