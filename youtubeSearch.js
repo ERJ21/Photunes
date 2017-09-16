@@ -3,7 +3,7 @@ function getData(query,x) { //query, number of videos
     'https://www.googleapis.com/youtube/v3/search',
     {
       part:'id',
-      q: query,
+      q: query + 'music',
       type: 'video',
       maxResults: 5,
       order: 'viewCount',
