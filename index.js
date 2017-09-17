@@ -32,7 +32,7 @@ app.post('/', (req, res) => {
 
 function doTheThing(url, num, res) {
 	console.log(num)
-	if(num<5) {
+	if(num<10) {
 		childrenAlive++;
 		console.log('Spawning child, ' + childrenAlive + ' children alive');
 		var child = spawn('node', ['puppet.js', url]);
