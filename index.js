@@ -43,6 +43,7 @@ function doTheThing(url, num, res) {
 				doTheThing(url, num+1, res);
 			}
 			else {
+				console.log(data.length)
 				console.log('responding to ' + url + ' with ' + data);
 				console.log(data.toString());
 				res.json(data.toString())
