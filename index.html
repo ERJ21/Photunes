@@ -31,13 +31,14 @@
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
-    <div class="row" style="margin-top: 5%;">
-      <h2>Photunes</h2>
+  <h2>Photunes</h2>
       <p3>A picture is worth 1,000 lyrics</p3>
+    <div class="row" style="margin-top: 0;">
+      
       <hr style="margin-top: 0;">
     </div>
     <div class="row" id="searchRow">
-      <div style="margin-top: 2%;">
+      <div style="margin-top: 0;">
         <div class="nine columns">
           <input type="text" name="search" class="search" id="imageSearch" placeholder="Enter an image url">
         </div>
@@ -48,7 +49,7 @@
     </div>
     <div id="loading" >
       <div class="row">
-        <h3>Searching for music about:</h3>
+        <h3 style="margin-top:0;">Searching for music about:</h3>
       </div>
       <div class="row">
         <div class="tweleve rows" id="image">
@@ -64,7 +65,7 @@
       </div>
     </div>
     <div id="result">
-      <div class="row" style="margin-top: 2%;">
+      <div class="row" style="margin-top: 0;">
         <h4>Here's what we found</h4>
       </div>
       <div class="row" >
@@ -160,8 +161,8 @@
       
       var node = document.createElement("IMG");
       node.src = url
-      node.style["max-width"] = "100%"
-      node.style["max-height"] = "100%"
+      node.style["max-width"] = "70%"
+      node.style["max-height"] = "70%"
       node.id = "deltethisimage"
       node.style.margin = "auto";
 
