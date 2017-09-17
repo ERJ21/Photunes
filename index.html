@@ -222,9 +222,28 @@
       topicId: '/m/04rlf',
       key: 'AIzaSyCofayi2gIrdRUYDf-vMEtGcbhOGOytw6c'
     });
+    if(data.items.length==0){
+        data = $.get(
+    'https://www.googleapis.com/youtube/v3/search',
+    {
+      part:'id',
+      q: finalQuery,
+      type: 'video',
+      maxResults: 10,
+      topicId: '/m/04rlf',
+      key: 'AIzaSyCofayi2gIrdRUYDf-vMEtGcbhOGOytw6c'
+    });
+        console.log("had to try again");
+    }
+
     data.done(function(data) {
       var node = document.createElement("IFRAME");
-      node.src = 'https://www.youtube.com/embed/' + data.items[0].id.videoId + '?rel=0' + '&autoplay=1';
+      if(data.items.length>0)
+        node.src = 'https://www.youtube.com/embed/' + data.items[0].id.videoId + '?rel=0' + '&autoplay=1';
+      else {
+        node.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&autoplay=1';
+        console.log("sorry not sorry");
+      }
       node.width="560";
       node.height="315";
       node.style.margin = "auto";
