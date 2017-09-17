@@ -20,7 +20,12 @@ async function getReccomendedText(url) {
 	      return tds.map(td => td.textContent)
 	    });
 			await browser.close();
-			console.log(data[0])
+			if(data[0]) {
+				console.log(data[0])
+			}
+			else {
+				console.log("fuckfuckfuck")
+			}
 			process.exit()
 		})
 	})

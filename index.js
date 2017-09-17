@@ -38,7 +38,7 @@ function doTheThing(url, num, res) {
 		var child = spawn('node', ['puppet.js', url]);
 
 		child.stdout.on('data', function(data) {
-			if(data === "undefined\n") {
+			if(data === "fuckfuckfuck\n") {
 				console.log('RSDFSDIFASEIURFH')
 				doTheThing(url, num+1, res);
 			}
