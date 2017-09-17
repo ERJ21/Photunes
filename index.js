@@ -38,15 +38,14 @@ function doTheThing(url, num, res) {
 		var child = spawn('node', ['puppet.js', url]);
 
 		child.stdout.on('data', function(data) {
-			if(data === "fuckfuckfuck\n") {
+			var str = data.toString();
+			if(str === "fuckfuckfuck\n") {
 				console.log('RSDFSDIFASEIURFH')
 				doTheThing(url, num+1, res);
 			}
 			else {
-				console.log(JSON.stringify(str))
-				console.log('responding to ' + url + ' with ' + data);
-				console.log(data.toString());
-				res.json(data.toString())
+				console.log('responding to ' + url + ' with ' + str);
+				res.json(str)
 			}
 		});
 
