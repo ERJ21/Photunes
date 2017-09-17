@@ -204,12 +204,13 @@
 
     var splitQuery = query.split(" ");
     var finalQuery = "";
-    for(var i=0; i<splitQuery.length; i++) {
+    for(var i=0; i<splitQuery.length && i<4; i++) {
       if(splitQuery[i].length > 2)
         finalQuery=finalQuery + (" "+splitQuery[i]);
     }
-    finalQuery=finalQuery +  " music";
+    finalQuery=finalQuery +  " song";
     console.log(finalQuery);
+
     var data = $.get(
     'https://www.googleapis.com/youtube/v3/search',
     {
@@ -218,27 +219,22 @@
       type: 'video',
       maxResults: 3,
       order: 'viewCount',
-      topicId: '/m/04rlf',
       key: 'AIzaSyCofayi2gIrdRUYDf-vMEtGcbhOGOytw6c'
     });
 
     if(data != undefined){
       console.log("first try mofo");
     }
-    else{
-      /*
-        data = $.get(
+    else {
+      data = $.get(
     'https://www.googleapis.com/youtube/v3/search',
     {
       part:'id',
       q: finalQuery,
       type: 'video',
       maxResults: 3,
-      topicId: '/m/04rlf',
       key: 'AIzaSyCofayi2gIrdRUYDf-vMEtGcbhOGOytw6c'
     });
-    */
-        console.log('had to try again');
     }
 
     data.done(function(data) {
