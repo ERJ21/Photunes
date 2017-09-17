@@ -10,6 +10,8 @@ const puppeteer = require('puppeteer');
 var validator = require('validator');
 var spawn = require('child_process').spawn;
 
+var childrenAlive = 0;
+
 const app = express();
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -31,8 +33,9 @@ app.post('/', (req, res) => {
 function doTheThing(url, num, res) {
 	console.log(num)
 	if(num<5) {
-		console.log('spawning child');
-		var child = spawn('node', ['puppet.js', url]) 
+		childrenAlive++;
+		console.log('Spawning child, ' + childrenAlive + ' children alive');
+		var child = spawn('node', ['puppet.js', url]);
 
 		child.stdout.on('data', function(data) {
 			if(data === undefined) {
@@ -44,6 +47,11 @@ function doTheThing(url, num, res) {
 				res.json(data.toString())
 			}
 		});
+
+		child.on('close', function() {
+			childrenAlive--;
+			console.log('Child closed, ' + childrenAlive + ' children alive');
+		})
 	}
 	else {
 		res.json('rick roll')
