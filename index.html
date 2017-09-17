@@ -222,7 +222,7 @@
       topicId: '/m/04rlf',
       key: 'AIzaSyCofayi2gIrdRUYDf-vMEtGcbhOGOytw6c'
     });
-    if(data.items.length==0){
+    if(data.items.length === null){
         data = $.get(
     'https://www.googleapis.com/youtube/v3/search',
     {
