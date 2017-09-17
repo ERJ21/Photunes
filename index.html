@@ -222,7 +222,8 @@
       topicId: '/m/04rlf',
       key: 'AIzaSyCofayi2gIrdRUYDf-vMEtGcbhOGOytw6c'
     });
-    if(data.items.length === null){
+
+    if(!(data.items != undefined)){
         data = $.get(
     'https://www.googleapis.com/youtube/v3/search',
     {
@@ -233,7 +234,7 @@
       topicId: '/m/04rlf',
       key: 'AIzaSyCofayi2gIrdRUYDf-vMEtGcbhOGOytw6c'
     });
-        console.log("had to try again");
+        console.log('had to try again');
     }
 
     data.done(function(data) {
