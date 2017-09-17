@@ -217,23 +217,28 @@
       part:'id',
       q: finalQuery,
       type: 'video',
-      maxResults: 10,
+      maxResults: 3,
       order: 'viewCount',
       topicId: '/m/04rlf',
       key: 'AIzaSyCofayi2gIrdRUYDf-vMEtGcbhOGOytw6c'
     });
 
-    if(!(data.items != undefined)){
+    if(data != undefined){
+      console.log("first try mofo");
+    }
+    else{
+      /*
         data = $.get(
     'https://www.googleapis.com/youtube/v3/search',
     {
       part:'id',
       q: finalQuery,
       type: 'video',
-      maxResults: 10,
+      maxResults: 3,
       topicId: '/m/04rlf',
       key: 'AIzaSyCofayi2gIrdRUYDf-vMEtGcbhOGOytw6c'
     });
+    */
         console.log('had to try again');
     }
 
