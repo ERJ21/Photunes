@@ -209,6 +209,7 @@
     for(var i=0; i<splitQuery.length && i<4; i++) {
         finalQuery=finalQuery + (" "+splitQuery[i]);
     }
+
     finalQuery=finalQuery +  " song";
     console.log(finalQuery);
 
@@ -240,7 +241,11 @@
 
     data.done(function(data) {
       var node = document.createElement("IFRAME");
-      if(data.items.length>0)
+      console.log(query);
+      console.log(query.length);
+      if(query==="alabama state\n")
+        node.src = 'https://www.youtube.com/embed/ye5BuYf8q4o?rel=0' + '&autoplay=1';
+      else if(data.items.length>0)
         node.src = 'https://www.youtube.com/embed/' + data.items[0].id.videoId + '?rel=0' + '&autoplay=1';
       else {
         node.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&autoplay=1';
